@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,97 +19,74 @@ public class YandexTest extends WebDriverSettings {
     @Test
     public void openYandex() throws InterruptedException {
 
-        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        mainPage.open();
-        mainPage.goToMarket();
-
-        //Заходим на Яндекс
-        //driver.get("https://yandex.ru/");
-        //String windowHandler = driver.getWindowHandle();
-
-        //Ожидаем появления ссылки на маркет
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-id=\"market\"]")));
-        //Находим элемент ссылки на маркет и кликаем на него
-        //driver.findElement(By.xpath("//a[@data-id='market']")).click();
-
-        MainMarketPage mainMarketPage = PageFactory.initElements(driver, MainMarketPage.class);
-
-        mainMarketPage.search("ноутбуки");
-        mainMarketPage.setPriceFilter(100000d,200000d);
-
-        mainMarketPage.selectChekBoxApple();
-        mainMarketPage.selectChekBoxASUS();
-        mainMarketPage.selectChekBoxHP();
-        mainMarketPage.selectChekBoxXiaomi();
-
-        assertTrue(mainMarketPage.chekBoxApple.isSelected());
-        assertTrue(mainMarketPage.chekBoxASUS.isSelected());
-        assertTrue(mainMarketPage.chekBoxHP.isSelected());
-        assertTrue(mainMarketPage.chekBoxXiaomi.isSelected());
-
-        //Ждем пока не появится поле поиска
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id=\"header-search\"]")));
-        //Находим поле поиска и вводим текст
-        //String searchText = "ноутбуки";
-        //WebElement headerSearch = driver.findElement(By.xpath("//input[@id=\"header-search\"]"));
-        //headerSearch.sendKeys(searchText);
-        //Проверяем что поле посика содержит введенный текст
-        //assertEquals(searchText.toLowerCase(),headerSearch.getAttribute("value").toLowerCase());
-        //Находим кнопку "Найти" и кликаем по ней
-        //driver.findElement(By.xpath("//button[@role=\"button\"]")).click();
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"search-prepack\"]//legend[.=\"Цена, ₽\"]")));
-        //В поле Цена ввести значения 100000 – 200000
-
-
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"search-prepack\"]//legend[.=\"Производитель\"]")));
-        //Выбрать производителей «Apple», «ASUS», «HP», «Xiaomi»
-        //mainMarketPage.selectChekBoxApple();
-        //driver.findElement(By.xpath("//input[contains(@name,\"Apple\")]/..")).click();
-        //driver.findElement(By.xpath("//input[contains(@name,\"ASUS\")]/..")).click();
-        //driver.findElement(By.xpath("//input[contains(@name,\"HP\")]/..")).click();
-        //driver.findElement(By.xpath("//input[contains(@name,\"Xiaomi\")]/..")).click();
-
-        //Проверить, что соответствующие галочки проставились
-        assertTrue(driver.findElement(By.xpath("//input[contains(@name,\"Apple\")]")).isSelected());
-        assertTrue(driver.findElement(By.xpath("//input[contains(@name,\"ASUS\")]")).isSelected());
-        assertTrue(driver.findElement(By.xpath("//input[contains(@name,\"HP\")]")).isSelected());
-        assertTrue(driver.findElement(By.xpath("//input[contains(@name,\"Xiaomi\")]")).isSelected());
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"search-prepack\"]//legend[.=\"Процессор\"]")));
-        //Выбрать процессор «Core i7»
-        driver.findElement(By.xpath("//input[contains(@name,\"Core i7\")]/..")).click();
-
-        //TODO: Надо как то понять что фильтр применился или дождаться пока он применится
-        //Пробуем подождать элемента который скрывает найденное
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"preloadable__preloader preloadable__preloader_visibility_visible preloadable__paranja\"]")));
-        //Теперь ждем когда этот элемент пропадет
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class=\"preloadable__preloader preloadable__preloader_visibility_visible preloadable__paranja\"]")));
-
-        //Вытаскиваем все элементы с ценами
-        List<WebElement> elementsPrice = driver.findElements(By.xpath("//div[@class=\"price\"]"));
-
-        //TODO: Надо сделать проверку цены
-        for (WebElement element : elementsPrice)
+        try
         {
-            //Временно для проверки вывожу всецены в консоль
-            System.out.println(element.getText());
+            MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+            //Зайти на yandex.ru
+            mainPage.open();
+            //Кликнуть на «Маркет»
+            mainPage.goToMarket();
+
+            MainMarketPage mainMarketPage = PageFactory.initElements(driver, MainMarketPage.class);
+
+            //В поле поиска ввести «ноутбуки»
+            mainMarketPage.setSearchFieldText("ноутбуки");
+
+            //Проверить что поле поиска содержит «ноутбуки»
+            assertEquals("ноутбуки", mainMarketPage.getSaerhFieldText().toLowerCase());
+
+            //Нажать «Найти»
+            mainMarketPage.clikSearchButton();
+
+            //В поле Цена ввести значения 100000 – 200000
+            mainMarketPage.setPriceFilter(100000d,200000d);
+
+            //Выбрать производителей «Apple», «ASUS», «HP», «Xiaomi»
+            String[] chekBoxNames = new String[]{"Apple","ASUS","HP","Xiaomi"};
+            mainMarketPage.selectChekBoxes(chekBoxNames);
+
+            //Проверить, что соответствующие галочки проставились
+            Boolean[] isSelectedChekBoxes = mainMarketPage.isSelectedChekBoxes(chekBoxNames);
+            for (Boolean isSelected : isSelectedChekBoxes) {
+                assertTrue(isSelected);
+            }
+
+            //Выбрать процессор «Core i7»
+            chekBoxNames = new String[]{"Core i7"};
+            mainMarketPage.selectChekBoxes(chekBoxNames);
+
+            //Проверить что цены в таблице в интервале 100 – 200 тысяч
+            ArrayList<Integer> prices = mainMarketPage.getPrices();
+            for (Integer price : prices ) {
+                assertTrue(price >= 100000 && price <= 200000 , "Цена меньше 100000 или больше 200000: " + price);
+            }
+
+            //Очистить поле поиска
+            mainMarketPage.clearSearchField();
+
+            //Ввести «Зеленый слоник»
+            mainMarketPage.setSearchFieldText("Зеленый слоник");
+
+            //Нажать найти
+            mainMarketPage.clikSearchButton();
+
+            //Найти товар содержащие в имени «Толстовка», кликнуть на него
+            mainMarketPage.clikOnProductCardTitle("Худи");
+
+            //Перейти на yandex.ru
+            driver.get("https://yandex.ru/");
+
+            //Задержка для просмотра результата
+            Thread.sleep(10000);
         }
-
-        WebElement headerSearch2 = driver.findElement(By.xpath("//input[@id=\"header-search\"]"));
-        headerSearch2.clear();
-        headerSearch2.sendKeys("Зеленый слоник" + Keys.ENTER);
-
-
-        //TODO: Вероятно стоит поправить
-        String xpath = "//div[@class=\"n-snippet-card2 i-bem b-zone b-spy-visible b-spy-events shop-history b-spy-visible_js_inited\"]";
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-        driver.findElement(By.xpath("//div[@class=\"n-snippet-card2__title\"]/a[contains(text(),\"Худи\")]")).click();
-
-        //driver.switchTo().window(windowHandler);
-        driver.get("https://yandex.ru/");
-
-        //Задержка для того что бы посмотреть страничку пока не закрылась, потом убрать
-        Thread.sleep(10000);
+        catch (Exception e)
+        {
+            String message = "Упс, что-то пошло не так";
+            System.out.println(message);
+            System.out.println(e.getMessage());
+            for(StackTraceElement element: e.getStackTrace())
+                System.out.println(element);
+        }
 
     }
 

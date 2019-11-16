@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2dedd043-0c8d-4a68-9650-5724d322481e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/MainMarketPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/MainMarketPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/MainMarketPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/WebDriverSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/WebDriverSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/YandexTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/YandexTest.java" afterDir="false" />
     </list>
@@ -107,18 +106,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/YandexTest.java</url>
-          <line>17</line>
-          <properties class="ru.yandex.YandexTest" method="openYandex">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="((RemoteWebElement)elements.get(0)).parent" custom="org.openqa.selenium.remote.RemoteWebElement" />
