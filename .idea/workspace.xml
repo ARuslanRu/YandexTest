@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2dedd043-0c8d-4a68-9650-5724d322481e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/YandexTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/YandexTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +37,7 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.YandexTest.openYandex">
-    <configuration name="YandexTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="YandexTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="YandexTest" />
       <extension name="coverage">
         <pattern>
@@ -53,7 +52,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YandexTest.openYandex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="YandexTest.openYandex" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="YandexTest" />
       <extension name="coverage">
         <pattern>
@@ -69,12 +68,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.YandexTest.openYandex" />
-        <item itemvalue="JUnit.YandexTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
