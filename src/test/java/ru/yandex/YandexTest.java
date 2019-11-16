@@ -71,7 +71,7 @@ public class YandexTest extends WebDriverSettings {
             mainMarketPage.clikSearchButton();
 
             //Найти товар содержащие в имени «Толстовка», кликнуть на него
-            mainMarketPage.clikOnProductCardTitle("Худи");
+            mainMarketPage.clikOnProductCardTitle("Худи");//Толстовки не было в результатах поиска. Поставил "Худи".
 
             //Перейти на yandex.ru
             driver.get("https://yandex.ru/");
